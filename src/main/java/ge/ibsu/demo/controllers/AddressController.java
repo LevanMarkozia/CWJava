@@ -1,11 +1,11 @@
 package ge.ibsu.demo.controllers;
 
+import ge.ibsu.demo.dto.AddAddress;
+import ge.ibsu.demo.dto.AddCustomer;
 import ge.ibsu.demo.entities.Address;
+import ge.ibsu.demo.entities.Customer;
 import ge.ibsu.demo.services.AddressService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +27,15 @@ public class AddressController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {"application/json"})
     public Address getById(@PathVariable Long id) {
         return addressService.getById(id);
+    }
+
+    @RequestMapping(value="/add",method = RequestMethod.POST,produces = {"application/json"})
+    public Address add(@RequestBody AddAddress addAddress){
+        return addressService.addEditAddress(addAddress,null);
+    }
+
+    @RequestMapping(value="/{id}",method = RequestMethod.PUT,produces = {"application/json"})
+    public Address edit(@RequestBody AddAddress addAddress,@PathVariable Long id){
+        return addressService.addEditAddress(addAddress,id);
     }
 }

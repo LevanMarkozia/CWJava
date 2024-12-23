@@ -35,6 +35,7 @@ public class CustomerService {
         if(address==null){
             Address newAddress = new Address();
             newAddress.setAddress(addCustomer.getAddress());
+            newAddress.setDistrict("Unidentified");
             address=addressRepository.save(newAddress);
         }
         customer.setAddress(address);
