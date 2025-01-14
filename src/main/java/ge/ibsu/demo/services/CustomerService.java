@@ -54,4 +54,9 @@ public class CustomerService {
         String searchText="%" + searchCustomer.getSearchText() + "%";
         return customerRepository.searchCustomers(searchText, pageable);
     }
+    public Page<Customer> searchNative(SearchCustomer searchCustomer,Paging paging){
+        Pageable pageable= PageRequest.of(paging.getPage()-1, paging.getSize(), Sort.by("customer_id").ascending());
+        String searchText="%" + searchCustomer.getSearchText() + "%";
+        return customerRepository.searchCustomerViaNativeQuery(searchText,pageable);
+    }
 }

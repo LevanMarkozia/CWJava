@@ -45,4 +45,9 @@ public class CustomerController {
     public Page<Customer> search(@RequestBody RequestData<SearchCustomer> rd){
         return customerService.search(rd.getData(),rd.getPaging());
     }
+
+    @RequestMapping(value = "/searchNative",method = RequestMethod.POST,produces = {"application/json"})
+    public Page<Customer> searchNative(@RequestBody RequestData<SearchCustomer> rd){
+        return customerService.searchNative(rd.getData(),rd.getPaging());
+    }
 }
